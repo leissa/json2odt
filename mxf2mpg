@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -eu
+
+function mxf2mpg() {
+    in=${1}
+    out=${in%.MXF}.mpg
+
+    ffmpeg -i "${in}" -c:v mpeg2video -qscale:v 31 -c:a mp2 -b:a 128k "${out}"
+}
+
+for f in *.mxf
+do
+    echo "$f"
+done
